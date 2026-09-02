@@ -1,6 +1,7 @@
 import { CTASection } from '@/src/components/CTASection';
 import { Hero } from '@/src/components/Hero';
 import { IndustryStrip } from '@/src/components/IndustryStrip';
+import { LocationSection } from '@/src/components/LocationSection';
 import { ServiceOverview } from '@/src/components/ServiceOverview';
 import { SiteFrame } from '@/src/components/SiteFrame';
 
@@ -31,6 +32,7 @@ export default function Home() {
         </section>
 
         <IndustryStrip />
+        <LocationSection />
         <CTASection />
       </main>
     </SiteFrame>

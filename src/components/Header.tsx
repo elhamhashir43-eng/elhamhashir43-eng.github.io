@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { PrimaryButton } from './PrimaryButton';
 import { SiteLink as Link } from './SiteLink';
 
@@ -16,10 +16,47 @@ const links = [
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const lastScrollY = useRef(0);
   const isActive = (href: string) => href === '/' ? pathname === '/' : pathname.startsWith(href);
 
+  useEffect(() => {
+    lastScrollY.current = window.scrollY;
+    let frame = 0;
+
+    const updateHeader = () => {
+      const currentScrollY = window.scrollY;
+      const distance = currentScrollY - lastScrollY.current;
+
+      setScrolled(currentScrollY > 8);
+
+      if (open || currentScrollY <= 16) {
+        setHidden(false);
+      } else if (distance > 6) {
+        setHidden(true);
+        lastScrollY.current = currentScrollY;
+      } else if (distance < -6) {
+        setHidden(false);
+        lastScrollY.current = currentScrollY;
+      }
+
+      frame = 0;
+    };
+
+    const handleScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(updateHeader);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, [open]);
+
   return (
-    <header className="site-header">
+    <header className={`site-header${hidden ? ' is-hidden' : ''}${scrolled ? ' is-scrolled' : ''}`}>
       <div className="shell header-inner">
         <Link className="brand" href="/" aria-label="Matdan KSA home" onClick={() => setOpen(false)}>
           <span className="brand-name">Matdan KSA</span>
