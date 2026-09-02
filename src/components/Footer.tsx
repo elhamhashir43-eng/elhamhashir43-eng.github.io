@@ -1,6 +1,6 @@
-import Link from 'next/link';
 import { siteConfig } from '@/src/config/site';
 import { services } from '@/src/data/services';
+import { SiteLink as Link } from './SiteLink';
 
 export function Footer() {
   return (

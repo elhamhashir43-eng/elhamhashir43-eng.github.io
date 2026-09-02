@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import { Arrow } from './Arrow';
+import { SiteLink as Link } from './SiteLink';
 
 type PrimaryButtonProps = {
   href?: string;

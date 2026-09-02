@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import { industries } from '@/src/data/industries';
+import { SiteLink as Link } from './SiteLink';
 
 export function IndustryStrip() {
   return (

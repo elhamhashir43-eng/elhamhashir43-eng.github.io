@@ -1,6 +1,6 @@
-import Link from 'next/link';
 import { services } from '@/src/data/services';
 import { Arrow } from './Arrow';
+import { SiteLink as Link } from './SiteLink';
 
 export function ServiceOverview({ detailed = false }: { detailed?: boolean }) {
   return (

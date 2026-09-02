@@ -1,9 +1,9 @@
 'use client';
 
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { PrimaryButton } from './PrimaryButton';
+import { SiteLink as Link } from './SiteLink';
 
 const links = [
   { href: '/', label: 'Home' },
