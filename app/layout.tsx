@@ -15,7 +15,7 @@ const sans = Manrope({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.matdanksa.com'),
+  metadataBase: new URL('https://elhamhashir43-eng.github.io'),
   title: {
     default: 'Matdan KSA | Independent Expertise',
     template: '%s',
