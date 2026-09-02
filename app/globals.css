@@ -345,10 +345,32 @@ button { color: inherit; }
   .mobile-menu nav { display: flex; flex-direction: column; padding-top: 26px; padding-bottom: 36px; }
   .mobile-menu nav > a:not(.button) { display: flex; justify-content: space-between; padding: 17px 0; border-bottom: 1px solid var(--line); color: var(--navy-deep); font-family: var(--font-serif), Georgia, serif; font-size: 28px; }
   .mobile-menu .button { margin-top: 28px; }
-  .hero-grid, .hero-compact .hero-grid { min-height: auto; grid-template-columns: 1fr; }
-  .hero-copy { padding: 88px 0 82px; }
+  .hero-grid, .hero-compact .hero-grid {
+    position: relative;
+    isolation: isolate;
+    min-height: 720px;
+    grid-template-columns: 1fr;
+  }
+  .hero-compact .hero-grid { min-height: 650px; }
+  .hero-copy { align-self: start; padding: 88px 0 82px; }
   .hero-copy h1 { width: auto; }
-  .hero-media, .hero-compact .hero-media { min-height: 500px; margin-inline: -32px; }
+  .hero-media, .hero-compact .hero-media {
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 100vw;
+    min-height: 100%;
+    margin: 0;
+    transform: translateX(-50%);
+    background-position: 68% center;
+  }
+  .hero-media::after {
+    background:
+      linear-gradient(180deg, rgb(255 255 255 / 97%) 0%, rgb(255 255 255 / 90%) 42%, rgb(255 255 255 / 52%) 72%, rgb(255 255 255 / 8%) 100%),
+      linear-gradient(90deg, #fff 0%, rgb(255 255 255 / 76%) 56%, rgb(255 255 255 / 12%) 100%);
+  }
   .heritage-grid { grid-template-columns: 150px 1px minmax(0, 1fr); gap: 38px; }
   .service-row { grid-template-columns: 40% 1fr auto; }
   .service-row h2 { font-size: 30px; }
@@ -369,12 +391,14 @@ button { color: inherit; }
   .brand-name { font-size: 31px; }
   .brand-line { font-size: 8px; }
   .mobile-menu { top: 90px; }
-  .hero-copy { padding: 76px 0 70px; }
+  .hero-grid { min-height: 720px; }
+  .hero-compact .hero-grid { min-height: 630px; }
+  .hero-copy { padding: 68px 0 58px; }
   .hero h1, .hero-compact .hero-copy h1, .simple-hero h1, .legal-page h1 { font-size: clamp(47px, 14vw, 60px); line-height: 1; }
   .hero-copy > .gold-rule { margin: 34px 0 30px; }
   .hero-copy > p { margin-bottom: 38px; font-size: 16px; }
   .desktop-break { display: none; }
-  .hero-media, .hero-compact .hero-media { min-height: 390px; margin-inline: -20px; }
+  .hero-media, .hero-compact .hero-media { min-height: 100%; margin: 0; background-position: 69% center; }
   .heritage-grid { min-height: auto; grid-template-columns: 1fr; gap: 26px; padding-top: 64px; padding-bottom: 64px; }
   .heritage-grid > i { width: 56px; height: 1px; }
   .heritage-grid > p { font-size: 16px; }
